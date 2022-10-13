@@ -31,6 +31,60 @@ TiUP 作为包管理工具，目前只支持配置一个镜像，该镜像主要
 
 ### 多镜像设计
 ![设计图](/media/pic.png)
+
+#### 兼容性
+规则：考虑兼容性，如果用户只有一个镜像，mirror相关的操作与老版本一致，不变化。
+
+Check list：
+通过命令 tiup mirror init 从零生成
+通过命令 tiup mirror clone 默认从已有全部镜像克隆
+tiup mirror set  不再使用，提示使用新的命令
+ 
+ 
+#### 配置多个mirror
+规则：
+Mirror有权重、别名、path
+Mirror的权重默认是100，用户可以修改，越小优先级越高。权重相同，按别名字母顺序。
+Mirror的权重和path支持命令修改。别名也可以改。
+添加mirror时，权重默认100，必须提供别名，别名不允许重名。
+
+命令：
+tiup mirror add <name> <url> --priority=11
+tiup mirror delete <name> 
+tiup mirror set <name> url=XXX  or priority =XXX
+tiup mirror rename <name> <string>
+tiup mirror show ： 显示路径和order
+Priority    name    		path
+1	  AAA 			https://tiup-mirrors.pingcap.com
+100	 BBB 			XXXXXXXXXXX
+ 
+#### 使用多mirror：多个mirror的处理顺序
+Install，list，status等操作的时候，都会按顺序去每个mirror获取数据
+如果多个mirror有相同组件的包，用优先级高的mirror
+
+提示信息：
+每次通过install，list，status逐个查询多个mirror时以及添加镜像时，发现用户配置了超过3个镜像，提示 ”You have configed more than 3 tiup mirrors, and this may make tiup response slower. “
+当有一个或多个mirror失联时，提示失联的mirror信息
+
+#### Mirror失联的处理
+
+任意mirror失联时就停止工作，直接报错。
+
+
+备注：直接失败可能不太友好，但是规避一些异常场景，第一版本以这种方式发布，如果客户使用有问题，可以讨论改进。
+
+
+#### 非官方Mirror的软件包发布
+tiup mirror publish <mirrorname> <comp-name> <version> <tarball> <entry>  [flags]
+增加mirrorname的配置
+<targetmirror>必填 ，填mirror别名
+
+tiup mirror modify 同上处理 
+tiup mirror clone 不需要加参数，强制使用mirror全集
+tiup mirror grant 增加mirrorname配置
+tiup mirror rotate 增加mirrorname配置
+
+
 ## 缺点
 
 ## FAQ
