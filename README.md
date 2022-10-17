@@ -7,7 +7,8 @@
 - [AstroProfundis](https://github.com/AstroProfundis): 后端研发喵，喵2只
 
 ## 项目进展
-TODO
+【完整版，可以提交初赛评审】
+
 ## 项目介绍
 使 TiUP 迈向通用包管理工具
 
