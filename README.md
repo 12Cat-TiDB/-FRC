@@ -71,6 +71,7 @@ tiup link zstd:v1.2.3
 ### 多镜像设计
 ![设计图](/media/pic.png)
 
+<<<<<<< HEAD
 #### 兼容性
 规则：考虑兼容性，如果用户只有一个镜像，mirror相关的操作与老版本一致，不变化。
 
@@ -121,6 +122,11 @@ Check list：
 - tiup mirror clone 不需要加参数，强制使用mirror全集
 - tiup mirror grant 增加mirrorname配置
 - tiup mirror rotate 增加mirrorname配置
+=======
+### “tiup community”软件仓库设计
+
+
+
 
 ## 缺点
 
