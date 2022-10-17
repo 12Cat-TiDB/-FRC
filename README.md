@@ -39,11 +39,11 @@ tiup 定位于 TiDB 生态的包管理工具，能够从 PingCAP 官方软件仓
 
 ## hackathon 目标
 
-1. 使 TiUP 支持同时使用多个软件仓库
-2. 利用 github pages 或其他服务来搭建一个 “tiup community”软件仓库
-3. 向“tiup community”软件仓库中添加开发者常用命令行工具
-4. maybe 让 tiup-playground 和 tiup-cluster也支持多软件仓库
-5. 增加 tiup 的用法，更方便管理和使用多版本软件
+1. 使 TiUP 支持同时使用多个软件仓库 - wk+zbl
+2. 利用 github pages 或其他服务来搭建一个 “tiup community”软件仓库 - qsr
+3. 向“tiup community”软件仓库中添加开发者常用命令行工具 - qsr
+4. maybe 让 tiup-playground 和 tiup-cluster也支持多软件仓库 -  wk+zbl
+5. 增加 tiup 的用法，更方便管理和使用多版本软件- wk
 
 ## 使用设计
 
