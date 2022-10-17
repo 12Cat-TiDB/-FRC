@@ -109,21 +109,17 @@ Check list：
 
 #### Mirror失联的处理
 
-- 任意mirror失联时就停止工作，直接报错。
+- 任意mirror失联时就停止工作, 直接报错。
 - 提供忽略某个异常 mirror 的参数，类似 yum 的 `--disablerepo`
 
 备注：直接失败可能不太友好，但是规避一些异常场景，第一版本以这种方式发布，如果客户使用有问题，可以讨论改进。
 
+#### 自定义 Mirror
 
-#### 非官方Mirror的软件包发布
-- tiup mirror publish <mirrorname> <comp-name> <version> <tarball> <entry>  [flags]
-  - 增加mirrorname的配置: <targetmirror> 必填 ，填mirror别名
-- tiup mirror modify 同上处理 
-- tiup mirror clone 不需要加参数，强制使用mirror全集
-- tiup mirror grant 增加mirrorname配置
-- tiup mirror rotate 增加mirrorname配置
-
-#### 增强软件包自描述能力
+- 基于 tiup server, 自定义满足 tiup mirror 规则的镜像源
+- 支持 reproducible-build
+- 支持自定义源码编译发布
+- 支持静态二进制上传
 - 在软件包中增加 meta 文件描述 entrypoint 等关键信息
 - 增加安装后 hook 执行入口
 
