@@ -72,20 +72,35 @@ tiup link zstd:v1.2.3
 
 #### 兼容性
 
-规则：考虑兼容性，如果用户只有一个镜像，mirror相关的操作与老版本一致，不变化。
+规则：考虑兼容性，原有 tiup 软件仓库配置方式不变，增加新的多软件仓库配置项。，mirror相关的操作与老版本一致，不变化。
 
 Check list：
 - [ ] 通过命令 tiup mirror init 从零生成
 - [ ] 通过命令 tiup mirror clone 默认从已有全部镜像克隆
 - [ ] tiup mirror set  不再使用，提示使用新的命令
- 
-#### 配置多个mirror
+
+#### 配置文件 example
+
+```
+mirrors=[“tiup-mirrors.pingcap.com”, “12cat.github.io”]
+
+[aliases]
+"tidb"="tiup-test.pingcap.com/tidb"
+```
+
+#### 多镜像使用
+
+1. 当沿用之前的使用方式时，先寻找是否有 alias, 如果有就直接使用，如果没有就从配置文件的第一个软件仓库搜索，成功就立刻返回，失败时查询下一个。 例如 `tiup install playground` 能够成功从 PingCAP 官方软件仓库安装 playground。 `tiup install zstd` 在从 PingCAP 软件仓库搜索不到 zstd 后从 12cat 软件仓库下载安装
+
+2. 通过 `mirror/component:version` 的方式来指定。例如 `tiup install 12cat.github.io/zstd:nightly`
+
+#### 配置多个 mirror
 
 规则：
-- Mirror有权重、别名、path
-- Mirror的权重默认是100，用户可以修改，越小优先级越高。权重相同，按别名字母顺序。
-- Mirror的权重和path支持命令修改。别名也可以改。
-- 添加mirror时，权重默认100，必须提供别名，别名不允许重名。
+- Mirror 有别名、path
+- Mirror 在配置文件中的出现顺序代表使用优先级。
+- 如何表示本地 mirror？
+- 只支持修改配置文件来配置？
 
 命令：
 - tiup mirror add <name> <url> --priority=11
