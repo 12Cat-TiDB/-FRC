@@ -2,7 +2,7 @@
 # 基本介绍
 ## 代码仓库
 - 本次魔改的 TiUP 代码：https://github.com/12Cat-TiDB/tiup
-- 闪亮登场的 TiUP 组件仓库：https://github.com/12Cat-TiDB/tiup-community
+- 闪亮登场的 TiUP 组件市场所在仓库：https://github.com/12Cat-TiDB/tiup-community
 
 ## 团队名称：12只喵
 - [qqqdan](https://github.com/qqqdan): 产品喵，喵2只
